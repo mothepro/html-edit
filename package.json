@@ -2,7 +2,7 @@
   "name": "html-edit",
   "description": "Modify HTML files by query selector directly from the command line",
   "author": "Maurice Prosper",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "GPL-3.0",
   "main": "dist/npm/index.js",
   "bin": "dist/npm/index.js",
