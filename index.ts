@@ -3,7 +3,7 @@ import { parse } from 'node-html-parser'
 import { stdin, argv } from 'process'
 import { getStream } from './util.js'
 
-const { attribute, query, replacement } = yargs(argv.slice(2))
+const { attribute, query, replacement } = await yargs(argv.slice(2))
   .option('attribute', {
     alias: 'a',
     type: 'string',
@@ -22,11 +22,12 @@ const { attribute, query, replacement } = yargs(argv.slice(2))
     type: 'string',
     default: '',
     describe: 'The value to inject in the selected elements',
+    defaultDescription: 'Removes the attribute or children of selected elements'
   })
   .help()
   .version()
   .env()
-  .parseSync()
+  .parse()
 
 const dom = parse(await getStream(stdin))
 
