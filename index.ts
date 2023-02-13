@@ -2,7 +2,7 @@ import yargs from 'yargs'
 import { parse } from 'node-html-parser'
 import { stdin, argv } from 'process'
 
-const { attribute, query, replacement } = await yargs(argv.slice(2))
+const { attribute, query, replacement, evaluate } = await yargs(argv.slice(2))
   .option('attribute', {
     alias: 'a',
     type: 'string',
@@ -21,24 +21,27 @@ const { attribute, query, replacement } = await yargs(argv.slice(2))
     type: 'string',
     default: '',
     describe: 'The value to inject in the selected elements',
-    defaultDescription: 'Removes the attribute or children of selected elements'
+    defaultDescription: 'Removes the attribute or children of selected elements',
+  })
+  .option('evaluate', {
+    alias: 'e',
+    type: 'boolean',
+    describe: 'Whether the `replacement` should be treated as evaluated JS code',
   })
   .help()
   .version()
   .env()
   .parse()
 
-
 const chunks = []
-for await (const chunk of stdin)
-  chunks.push(chunk)
-
+for await (const chunk of stdin) chunks.push(chunk)
 const input = Buffer.concat(chunks).toString('utf8')
 const dom = parse(input)
 
 for (const element of dom.querySelectorAll(query)) {
-  if (attribute) element.setAttribute(attribute, replacement)
-  else element.innerHTML = replacement
+  const output = evaluate ? eval(replacement) : replacement
+  if (attribute) element.setAttribute(attribute, output)
+  else element.innerHTML = output
 }
 
 console.log(dom.outerHTML)

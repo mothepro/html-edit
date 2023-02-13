@@ -17,3 +17,4 @@
 | `attribute` `a` | `string` | The inner text of the selected elements | The attribute to modify on selected elements |
 | `query` `q` | `string` | `html` | Elements to select in given HTML using a DOM query selector string |
 | `replacement` `r` | `string` | Remove the attribute (or inner text) of the selected elements | Value to inject in the selected elements |
+| `evaluate` `e` | `boolean` | `false` | Whether the `replacement` should be treated as evaluated JS code |
