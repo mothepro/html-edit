@@ -15,8 +15,6 @@
   "repository": "https://github.com/mothepro/html-edit",
   "scripts": {
     "build": "tsc",
-    "pretest": "npm run build",
-    "test": "mocha -r should -r should-sinon dist/npm/test/*.js",
     "prerelease": "npm run build",
     "release": "np",
     "prestart": "npm run build",
