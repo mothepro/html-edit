@@ -1,6 +1,6 @@
 {
   "name": "html-edit",
-  "description": "",
+  "description": "Modify HTML files by query selector directly from the command line",
   "author": "Maurice Prosper",
   "version": "0.0.0",
   "license": "GPL-3.0",
@@ -26,9 +26,12 @@
     "@types/node": "^18.13.0",
     "@types/yargs": "^17.0.22",
     "np": "^7.6.3",
+    "ts-node": "^10.9.1",
+    "ts-node-esm": "^0.0.6",
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "node-html-parser": "^6.1.4",
     "yargs": "^17.6.2"
   }
 }
