@@ -1,39 +1,19 @@
-# Html Edit
+# HTML-edit
 
-> 
+> Command line program to modify HTML files by query selector directly from the command line
 
 [![npm](https://img.shields.io/npm/v/html-edit.svg)](https://www.npmjs.com/package/html-edit)
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/html-edit)
 
-## Install
+## Usage
 
-`yarn add html-edit`
+`npx html-edit [[options]] < input.html > output.html`
 
-## How to Use
+## How to Use in commmand line
 
-| Attribute | Type | Default | Description |
-| --------- | ---- | ------- | ----------- |
-| `hidden` | `boolean` | `false` | Whether the element should be displayed |
-
-<!--
-Inline demo for webcomponents.org
-```
-<custom-element-demo>
-  <template>
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
-```html
-<!-- 
-  Import the element.
-
-  The `module` query parameter expands "bare" imports to full unpkg.com urls.
-  This means use of an import map isn't needed.
-  @see https://unpkg.com#query-params
--->
-<script type="module" src="//unpkg.com/html-edit/dist/esm/index.js?module"></script>
-
-
-```
+| Option | Type | Default | Description |
+| ------ | ---- | ------- | ----------- |
+| `help` | | | Show help |
+| `version` | | | Show version number |
+| `attribute` `a` | `string` | The inner text of the selected elements | The attribute to modify on selected elements |
+| `query` `q` | `string` | `html` | Elements to select in given HTML using a DOM query selector string |
+| `replacement` `r` | `string` | Remove the attribute (or inner text) of the selected elements | Value to inject in the selected elements |
