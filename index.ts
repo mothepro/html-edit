@@ -1,7 +1,6 @@
 import yargs from 'yargs'
 import { parse } from 'node-html-parser'
 import { stdin, argv } from 'process'
-import { getStream } from './util.js'
 
 const { attribute, query, replacement } = await yargs(argv.slice(2))
   .option('attribute', {
@@ -29,7 +28,13 @@ const { attribute, query, replacement } = await yargs(argv.slice(2))
   .env()
   .parse()
 
-const dom = parse(await getStream(stdin))
+
+const chunks = []
+for await (const chunk of stdin)
+  chunks.push(chunk)
+
+const input = Buffer.concat(chunks).toString('utf8')
+const dom = parse(input)
 
 for (const element of dom.querySelectorAll(query)) {
   if (attribute) element.setAttribute(attribute, replacement)
